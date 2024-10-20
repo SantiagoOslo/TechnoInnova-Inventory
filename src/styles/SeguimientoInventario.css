@@ -1,0 +1,98 @@
+/* Configuración del fondo */
+.seguimiento-inventario-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.6); /* Añade un overlay oscuro si es necesario */
+    padding: 20px;
+}
+
+/* Estilo del contenedor principal */
+.inventario-wrapper {
+    background-color: rgba(255, 255, 255, 0.85); /* Fondo semi-transparente pero más claro */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Mejor sombra */
+    max-width: 900px; /* Un poco más ancho para tablas grandes */
+    width: 100%;
+    text-align: center;
+    backdrop-filter: blur(8px); /* Desenfoque del fondo */
+}
+
+/* Estilo del título */
+.inventario-wrapper h1 {
+    font-size: 28px;
+    color: #2c3e50; /* Color más elegante */
+    margin-bottom: 25px;
+}
+
+/* Estilo de la tabla */
+.inventario-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+}
+
+.inventario-table th, .inventario-table td {
+    padding: 14px 20px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.inventario-table th {
+    background-color: #ecf0f1;
+    font-weight: bold;
+}
+
+.inventario-table tr:nth-child(even) {
+    background-color: #f4f4f4;
+}
+
+.inventario-table tr:hover {
+    background-color: #e8e8e8; /* Efecto hover */
+}
+
+/* Mensaje de no hay productos */
+.no-inventario-message {
+    font-size: 18px;
+    color: #7f8c8d;
+}
+
+/* Estilo del cuerpo y navegación */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+nav {
+    background-color: #34495e;
+    padding: 15px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #1abc9c;
+    text-decoration: none;
+}
