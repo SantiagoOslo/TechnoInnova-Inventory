@@ -1,13 +1,42 @@
-import React from 'react';
-import backgroundImage from '../public/computer21.jpeg'; 
-import '../styles/SeguimientoInventario.css'; 
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import backgroundImage from '../public/computer21.jpeg'; // Asegúrate de que la imagen exista en la ruta especificada
+import '../styles/SeguimientoInventario.css'; // Asegúrate de tener los estilos necesarios
 
-const SeguimientoInventario = ({ inventario }) => {
+const SeguimientoInventario = () => {
+  const [inventario, setInventario] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Para controlar el estado de carga
+
+  useEffect(() => {
+    // Función para obtener los datos del inventario
+    const fetchInventario = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/productos'); // Cambia la URL si tu API tiene otra ruta
+        setInventario(response.data);
+      } catch (error) {
+        console.error('Error al obtener el inventario:', error);
+      } finally {
+        setIsLoading(false); // Desactiva el estado de carga
+      }
+    };
+
+    fetchInventario();
+  }, []);
+
   return (
-    <div className="seguimiento-inventario-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
+    <div
+      className="seguimiento-inventario-container"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <div className="inventario-wrapper">
         <h1>Seguimiento de Inventario</h1>
-        {inventario.length > 0 ? (
+        {isLoading ? (
+          <p className="loading-message">Cargando inventario, por favor espera...</p>
+        ) : inventario.length > 0 ? (
           <table className="inventario-table">
             <thead>
               <tr>
@@ -19,15 +48,24 @@ const SeguimientoInventario = ({ inventario }) => {
               </tr>
             </thead>
             <tbody>
-              {inventario.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.producto}</td>
-                  <td>{item.categoria}</td>
-                  <td>{item.cantidad}</td>
-                  <td>{item.proveedor}</td>
-                  <td>{item.fechaIngreso}</td>
-                </tr>
-              ))}
+              {inventario
+                .filter(
+                  (item) =>
+                    item.producto &&
+                    item.categoria &&
+                    item.cantidad &&
+                    item.proveedor &&
+                    item.fechaIngreso
+                ) // Filtrar filas vacías o incompletas
+                .map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.producto}</td>
+                    <td>{item.categoria}</td>
+                    <td>{item.cantidad}</td>
+                    <td>{item.proveedor}</td>
+                    <td>{new Date(item.fechaIngreso).toLocaleDateString()}</td> {/* Formateo de fecha */}
+                  </tr>
+                ))}
             </tbody>
           </table>
         ) : (

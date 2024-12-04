@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/RegistroInventario.css'; // Asegúrate de tener este archivo para los estilos
+import axios from 'axios';
+import '../styles/RegistroInventario.css';
 
 const RegistroInventario = ({ onRegister }) => {
   const [producto, setProducto] = useState('');
@@ -8,18 +9,40 @@ const RegistroInventario = ({ onRegister }) => {
   const [proveedor, setProveedor] = useState('');
   const [fechaIngreso, setFechaIngreso] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (producto && categoria && cantidad && proveedor && fechaIngreso) {
-      onRegister({ producto, categoria, cantidad, proveedor, fechaIngreso });
-      // Limpiamos los campos después de registrar
-      setProducto('');
-      setCategoria('');
-      setCantidad('');
-      setProveedor('');
-      setFechaIngreso('');
+      const nuevoProducto = {
+        producto,
+        categoria,
+        cantidad: parseInt(cantidad, 10), // Convertimos cantidad a número
+        proveedor,
+        fechaIngreso,
+      };
+
+      try {
+        if (onRegister) {
+          // Si se proporciona la función onRegister, se llama a ella
+          onRegister(nuevoProducto);
+        }
+
+        // Registrar el producto en la base de datos usando axios
+        const response = await axios.post('http://localhost:5000/api/productos', nuevoProducto);
+        alert(`Producto registrado: ${response.data.producto}`);
+
+        // Limpiamos los campos
+        setProducto('');
+        setCategoria('');
+        setCantidad('');
+        setProveedor('');
+        setFechaIngreso('');
+      } catch (error) {
+        console.error('Error al registrar el producto:', error);
+        alert('Hubo un error al registrar el producto.');
+      }
     } else {
-      alert('Por favor, complete todos los campos');
+      alert('Por favor, complete todos los campos.');
     }
   };
 
@@ -73,7 +96,9 @@ const RegistroInventario = ({ onRegister }) => {
               required
             />
           </div>
-          <button type="submit" className="submit-button">Registrar Producto</button>
+          <button type="submit" className="submit-button">
+            Registrar Producto
+          </button>
         </form>
       </div>
     </div>

@@ -6,61 +6,68 @@
     height: 100vh;
     background-size: cover;
     background-position: center;
-    background-color: rgba(0, 0, 0, 0.6); /* Añade un overlay oscuro si es necesario */
+    background-color: rgba(0, 0, 0, 0.6); /* Overlay oscuro */
     padding: 20px;
 }
 
 /* Estilo del contenedor principal */
 .inventario-wrapper {
-    background-color: rgba(255, 255, 255, 0.85); /* Fondo semi-transparente pero más claro */
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Mejor sombra */
-    max-width: 900px; /* Un poco más ancho para tablas grandes */
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente más claro */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra más sutil */
+    max-width: 850px;
     width: 100%;
     text-align: center;
-    backdrop-filter: blur(8px); /* Desenfoque del fondo */
+    backdrop-filter: blur(6px); /* Desenfoque del fondo */
 }
 
 /* Estilo del título */
 .inventario-wrapper h1 {
-    font-size: 28px;
-    color: #2c3e50; /* Color más elegante */
-    margin-bottom: 25px;
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
 }
 
 /* Estilo de la tabla */
 .inventario-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+    font-size: 14px; /* Reduce el tamaño de la fuente */
+    table-layout: fixed; /* Distribuye el espacio automáticamente */
 }
 
 .inventario-table th, .inventario-table td {
-    padding: 14px 20px;
+    padding: 8px 12px; /* Reduce el espacio interno */
     border: 1px solid #ddd;
     text-align: left;
-    font-size: 16px;
-    color: #2c3e50;
+    color: #34495e;
+    white-space: nowrap; /* Evita que el texto salte de línea */
+    overflow: hidden; /* Oculta el contenido excedente */
+    text-overflow: ellipsis; /* Muestra "..." si el texto es demasiado largo */
 }
 
 .inventario-table th {
     background-color: #ecf0f1;
     font-weight: bold;
+    color: #2c3e50;
 }
 
 .inventario-table tr:nth-child(even) {
-    background-color: #f4f4f4;
+    background-color: #fafafa;
 }
 
 .inventario-table tr:hover {
-    background-color: #e8e8e8; /* Efecto hover */
+    background-color: #f0f0f0;
+    cursor: pointer; /* Cambia el cursor al pasar sobre una fila */
 }
 
 /* Mensaje de no hay productos */
 .no-inventario-message {
-    font-size: 18px;
+    font-size: 16px;
     color: #7f8c8d;
+    margin: 20px 0;
 }
 
 /* Estilo del cuerpo y navegación */
@@ -68,26 +75,28 @@ body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f2f2f2;
+    background-color: #f8f9fa;
 }
 
 nav {
     background-color: #34495e;
-    padding: 15px;
+    padding: 10px 15px;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 15px;
     justify-content: center;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 16px;
-    padding: 10px 15px;
+    font-size: 14px; /* Reduce el tamaño del texto */
+    padding: 8px 12px;
     border-radius: 4px;
     transition: background 0.3s;
 }
@@ -95,4 +104,20 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #1abc9c;
     text-decoration: none;
+}
+
+/* Ajuste adicional para pantallas pequeñas */
+@media (max-width: 600px) {
+    .inventario-wrapper {
+        padding: 15px;
+    }
+
+    .inventario-table th, .inventario-table td {
+        font-size: 12px; /* Reduce aún más el tamaño en dispositivos pequeños */
+        padding: 6px 8px;
+    }
+
+    .inventario-wrapper h1 {
+        font-size: 20px;
+    }
 }
