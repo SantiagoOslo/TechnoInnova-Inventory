@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import backgroundImage from '../public/computer21.jpeg'; // Asegúrate de que la imagen exista en la ruta especificada
-import '../styles/SeguimientoInventario.css'; // Asegúrate de tener los estilos necesarios
+import backgroundImage from '../public/computer21.jpeg'; 
+import '../styles/SeguimientoInventario.css'; 
 
 const SeguimientoInventario = () => {
   const [inventario, setInventario] = useState([]);
