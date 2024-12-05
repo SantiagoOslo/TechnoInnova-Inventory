@@ -31,7 +31,7 @@ const RegistroInventario = ({ onRegister }) => {
         const response = await axios.post('http://localhost:5000/api/productos', nuevoProducto);
         alert(`Producto registrado: ${response.data.producto}`);
 
-        // Limpiamos los campos
+        
         setProducto('');
         setCategoria('');
         setCantidad('');

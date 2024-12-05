@@ -5,18 +5,17 @@ import '../styles/SeguimientoInventario.css';
 
 const SeguimientoInventario = () => {
   const [inventario, setInventario] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Para controlar el estado de carga
+  const [isLoading, setIsLoading] = useState(true); 
 
   useEffect(() => {
-    // Función para obtener los datos del inventario
+    
     const fetchInventario = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/productos'); // Cambia la URL si tu API tiene otra ruta
-        setInventario(response.data);
+        const response = await axios.get('http://localhost:5000/api/productos'); 
       } catch (error) {
         console.error('Error al obtener el inventario:', error);
       } finally {
-        setIsLoading(false); // Desactiva el estado de carga
+        setIsLoading(false); 
       }
     };
 
@@ -56,7 +55,7 @@ const SeguimientoInventario = () => {
                     item.cantidad &&
                     item.proveedor &&
                     item.fechaIngreso
-                ) // Filtrar filas vacías o incompletas
+                ) 
                 .map((item, index) => (
                   <tr key={index}>
                     <td>{item.producto}</td>

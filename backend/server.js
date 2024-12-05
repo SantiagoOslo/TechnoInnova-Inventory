@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// Conexión a MongoDB (actualizado para versiones recientes de mongoose)
+// Conexión a MongoDB 
 mongoose.connect('mongodb://localhost:27017/inventario')
     .then(() => console.log('Conectado a la base de datos'))
     .catch(err => console.error('Error al conectar a la base de datos:', err));
